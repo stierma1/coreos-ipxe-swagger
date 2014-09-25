@@ -1,0 +1,112 @@
+{
+    "swaggerVersion": "1.2",
+    "apiVersion": "v1",
+    "basePath": "http://localhost:4777/",
+    "resourcePath": "/profiles",
+    "produces":[
+      "application/json",
+      "text/plain"
+    ],
+    "authorizations": {
+
+    },
+    "models":{
+      "Profile": {
+        "id": "Profile",
+        "required": [
+          "version",
+          "cloud_config"
+        ],
+        "properties": {
+          "cloud_config": {
+            "type": "string"
+          },
+          "cloud_config_version": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "sshkey":{
+            "type": "string"
+          },
+          "rootfstype":{
+            "type":"string"
+          },
+          "coreos_autologin":{
+            "type":"string"
+          },
+          "console":{
+            "type": "array",
+            "items": {
+              "$ref": "string"
+            }
+          }
+        }
+      }
+    },
+    "apis": [
+        {
+            "path": "/{profile}/{mac}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Get iPXE profile",
+                    "notes": "If MAC is not sent then it will send default profile",
+                    "authorizations": {
+                    },
+                    "type": "string",
+                    "nickname": "ipxeGet",
+                    "produces":[
+                      "text/plain"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "profile",
+                            "description": "ipxe profile",
+                            "required": true,
+                            "type": "string",
+                            "paramType": "path"
+                        },
+                        {
+                            "name": "mac",
+                            "description": "mac address of caller",
+                            "required": false,
+                            "type": "string",
+                            "paramType": "path"
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "type": "string",
+                    "nickname": "ipxePut",
+                    "parameters": [
+                        {
+                            "name": "profile",
+                            "description": "ipxe profile",
+                            "required": true,
+                            "type": "string",
+                            "paramType": "path"
+                        },
+                        {
+                            "name": "mac",
+                            "description": "mac address of caller",
+                            "required": false,
+                            "type": "string",
+                            "paramType": "path"
+                        },
+                        {
+                            "name": "body",
+                            "description": "the body.",
+                            "required": true,
+                            "type": "Profile",
+                            "paramType": "body"
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ]
+}

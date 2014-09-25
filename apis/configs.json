@@ -1,0 +1,70 @@
+{
+    "swaggerVersion": "1.2",
+    "apiVersion": "v1",
+    "basePath": "http://localhost:4777/",
+    "resourcePath": "/configs",
+    "produces":[
+      "application/json",
+      "text/plain"
+    ],
+    "authorizations": {
+
+    },
+    "apis": [
+        {
+            "path": "/{name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Get Cloud Init files",
+                    "notes": "If version is not sent then it will send head config",
+                    "authorizations": {
+                    },
+                    "type": "string",
+                    "nickname": "getCloudConfig",
+                    "produces":[
+                      "application/yml"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "name",
+                            "description": "name of cloud_config yml file",
+                            "required": true,
+                            "type": "string",
+                            "paramType": "path"
+                        },
+                        {
+                            "name": "version",
+                            "description": "version of config yml",
+                            "required": false,
+                            "type": "string",
+                            "paramType": "query"
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "type": "string",
+                    "nickname": "uploadCloudConfig",
+                    "consumes": ["text/plain"],
+                    "parameters": [
+                        {
+                            "name": "name",
+                            "description": "name of cloud config",
+                            "required": true,
+                            "type": "string",
+                            "paramType": "path"
+                        },
+                        {
+                            "name": "body",
+                            "description": "cloud config yaml",
+                            "required": false,
+                            "type": "string",
+                            "paramType": "body"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

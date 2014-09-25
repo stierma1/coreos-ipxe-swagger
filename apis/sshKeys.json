@@ -1,0 +1,59 @@
+{
+    "swaggerVersion": "1.2",
+    "apiVersion": "v1",
+    "basePath": "http://localhost:4777/",
+    "resourcePath": "/sshKeys",
+    "produces":[
+      "text/plain"
+    ],
+    "authorizations": {
+
+    },
+    "apis": [
+        {
+            "path": "/{key_name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Get sshkey",
+                    "notes": "If version is not sent then it will send head image",
+                    "authorizations": {
+                    },
+                    "type": "string",
+                    "nickname": "getKey",
+                    "parameters": [
+                        {
+                            "name": "key_name",
+                            "description": "name of sshKey file",
+                            "required": true,
+                            "type": "string",
+                            "paramType": "path"
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "type": "string",
+                    "nickname": "uploadKey",
+                    "consumes": ["text/plain"],
+                    "parameters": [
+                        {
+                            "name": "key_name",
+                            "description": "name of image",
+                            "required": true,
+                            "type": "string",
+                            "paramType": "path"
+                        },
+                        {
+                            "name": "body",
+                            "description": "the body.",
+                            "required": true,
+                            "type": "string",
+                            "paramType": "body"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

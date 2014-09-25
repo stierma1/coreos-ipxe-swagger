@@ -1,0 +1,21 @@
+{
+    "swaggerVersion": "1.2",
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "path": "/profiles",
+            "description": "ipxe profiles interface"
+        },
+        {
+            "path": "/images",
+            "description": "os images interface"
+        },
+        {
+            "path": "/sshKeys",
+            "description": "sshKeys interface"
+        },{
+            "path": "/configs",
+            "description": "Cloud Config interface"
+        }
+    ]
+}
