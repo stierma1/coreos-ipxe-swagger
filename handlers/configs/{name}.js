@@ -14,6 +14,7 @@ module.exports = {
     get: function getCloudConfig(req, res) {
         //respond with string
       Fiber(function(){
+
         if(req.query.version && !versionRegex.test(req.query.version)){
           res.status(400).send("Improper version format. Must pass " + versionRegex.toString() );
           return;

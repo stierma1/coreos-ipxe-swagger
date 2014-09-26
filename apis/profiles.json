@@ -47,7 +47,7 @@
     },
     "apis": [
         {
-            "path": "/{profile}/{mac}",
+            "path": "/{profile}/{id}",
             "operations": [
                 {
                     "method": "GET",
@@ -69,8 +69,8 @@
                             "paramType": "path"
                         },
                         {
-                            "name": "mac",
-                            "description": "mac address of caller",
+                            "name": "id",
+                            "description": "id supplied by caller",
                             "required": false,
                             "type": "string",
                             "paramType": "path"
@@ -90,8 +90,8 @@
                             "paramType": "path"
                         },
                         {
-                            "name": "mac",
-                            "description": "mac address of caller",
+                            "name": "id",
+                            "description": "id supplied by caller",
                             "required": false,
                             "type": "string",
                             "paramType": "path"

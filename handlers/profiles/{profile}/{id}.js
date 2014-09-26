@@ -17,7 +17,7 @@ var script = '#!ipxe\r\n' +
 'boot\r\n';
 
 
-//handlers for /{profile}/{mac}
+//handlers for /{profile}/{id}
 module.exports = {
 
     get: function ipxeGet(req, res) {
@@ -40,7 +40,7 @@ module.exports = {
 
 var putMac =
   function (req, res) {
-      var partialPath = 'profiles' + path.sep + req.params.profile + path.sep + (req.params.mac ? req.params.mac + '.json' : 'default.json');
+      var partialPath = 'profiles' + path.sep + req.params.profile + path.sep + (req.params.id ? req.params.id + '.json' : 'default.json');
       try{
         try{
           resMan.validPartialPath('profiles' + path.sep + req.params.profile );
@@ -55,11 +55,11 @@ var putMac =
   };
 
 var getScript = function(req, res){
-  var partialPath = 'profiles' + path.sep + req.params.profile + path.sep + (req.params.mac ? req.params.mac + '.json' : 'default.json');
+  var partialPath = 'profiles' + path.sep + req.params.profile + path.sep + (req.params.id ? req.params.id + '.json' : 'default.json');
 
   var profile = JSON.parse(resMan.read(partialPath));
 
-  var cloud_conf = initVars.baseUrl + '/configs/' + profile.cloud_config;
+  var cloud_conf = initVars.COREOS_IPXE_SERVER_BASE_URL + '/configs/' + profile.cloud_config;
   if(profile.cloud_config_version){
     cloud_conf += '?version=' + profile.cloud_config_version;
   }
@@ -90,7 +90,7 @@ var getScript = function(req, res){
   };
 
   scriptVariables['{{.Version}}'] = profile.version;
-  scriptVariables['{{.BaseUrl}}'] = initVars.baseUrl;
+  scriptVariables['{{.BaseUrl}}'] = initVars.COREOS_IPXE_SERVER_BASE_URL;
   scriptVariables['{{.Options}}'] = optString;
   var genScript = script + '';
   for(var i in scriptVariables){
