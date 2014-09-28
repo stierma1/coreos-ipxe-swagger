@@ -56,7 +56,7 @@ var putFunc =
 
         resMan.write(partialPath + path.sep + 'latest.yml', req.body);
         resMan.write(partialPath + path.sep + 'v' + (latestVersion + 1) + '.yml', req.body);
-        res.status(200).send('v' + (latestVersion + 1) + '.yml');
+        res.status(200).send('v' + (latestVersion + 1));
       } catch(err){
         res.status(400).send(err.message);
       }
