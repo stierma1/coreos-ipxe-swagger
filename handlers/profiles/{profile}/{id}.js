@@ -55,6 +55,7 @@ var putMac =
   };
 
 var getScript = function(req, res){
+  console.log("Get Request for " + req.params.profile + (req.params.id ? '/' + req.params.id : ''));
   var partialPath = 'profiles' + path.sep + req.params.profile + path.sep + (req.params.id ? req.params.id + '.json' : 'default.json');
 
   var profile = JSON.parse(resMan.read(partialPath));
