@@ -32,7 +32,7 @@ var swagger = swaggerize({
     outputvalidation: app.settings.env === 'development'
 });
 app.get('/', function(req, res){
-  fs.readFile('./dist/index.html', 'utf8', function(err, data){
+  fs.readFile(path.join(__dirname, '/dist/index.html'), 'utf8', function(err, data){
     if(err){
       res.status(500).send(err);
     } else {
@@ -41,7 +41,7 @@ app.get('/', function(req, res){
   });
 });
 
-app.use(express.static('./dist'));
+app.use(express.static(path.join(__dirname, '/dist')));
 app.use('/images', express.static(path.join(env.COREOS_IPXE_SERVER_DATA_DIR, 'images')));
 app.use(require('body-parser').text());
 app.use(require('body-parser').json());
