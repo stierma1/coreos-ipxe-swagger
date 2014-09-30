@@ -36,7 +36,7 @@ app.get('/', function(req, res){
     if(err){
       res.status(500).send(err);
     } else {
-      res.status(200).send(data.replace('{{initAddr}}', env.COREOS_IPXE_SERVER_LISTEN_ADDR));
+      res.status(200).send(data.replace('{{initAddr}}', env.COREOS_IPXE_SERVER_BASE_URL));
     }
   });
 });
