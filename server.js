@@ -14,19 +14,19 @@ var swagger = swaggerize({
     resources:[
       {
         api: require('./apis/profiles.json'),
-        handlers: './handlers/profiles',
+        handlers: path.join(__dirname, '/handlers/profiles')
       },
       {
         api: require('./apis/images.json'),
-        handlers: './handlers/images',
+        handlers: path.join(__dirname, '/handlers/images')
       },
       {
         api: require('./apis/configs.json'),
-        handlers: './handlers/configs',
+        handlers: path.join(__dirname, '/handlers/configs')
       },
       {
         api: require('./apis/sshKeys.json'),
-        handlers: './handlers/sshKeys',
+        handlers: path.join(__dirname, '/handlers/sshKeys')
       }
     ],
     outputvalidation: app.settings.env === 'development'
