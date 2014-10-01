@@ -14,7 +14,7 @@ module.exports = {
     get: function getKey(req, res) {
         //respond with string
       Fiber(function(){
-        var partialPath = 'sshKeys' + path.sep + req.params.key_name + '.pub';
+        var partialPath = 'sshkeys' + path.sep + req.params.key_name + '.pub';
         try{
           res.status(200).send(resMan.read(partialPath));
         } catch(err){
