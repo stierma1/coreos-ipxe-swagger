@@ -36,7 +36,7 @@ module.exports = {
 
 var putKey =
   function (req, res) {
-      var partialPath = 'sshKeys' + path.sep + req.params.key_name + '.pub';
+      var partialPath = 'sshkeys' + path.sep + req.params.key_name + '.pub';
       try{
         resMan.write(partialPath, req.body);
         res.status(200).end();
