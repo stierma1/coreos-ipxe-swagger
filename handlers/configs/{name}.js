@@ -8,6 +8,7 @@ var utils = require('lib/utils.js');
 var jsYML = require('js-yaml');
 var auth = require('lib/auth-middleware');
 var versionRegex = /^v[0-9]+$/
+var fs = require('fs');
 //handlers for /{name}
 module.exports = {
 
@@ -23,7 +24,28 @@ module.exports = {
         var partialPath = 'configs' + path.sep + req.params.name + path.sep + (req.query.version ? req.query.version : 'latest') + '.yml';
         try{
           var identifier = resMan.validPartialPath(partialPath);
-          res.status(200).sendFile(identifier);
+          var cur = Fiber.current;
+          var file = null;
+          var err = null;
+          fs.readFile(identifier, 'utf8', function(error, data){
+              err = error;
+              file = data;
+              cur.run();
+          });
+
+          Fiber.yield();
+
+          if(err){
+            throw err;
+          }
+
+          if(req.query.$public_ipv4){
+            file = file.replace(/\$public_ipv4/g, req.query.$public_ipv4)
+          }
+          if(req.query.$private_addr){
+            file = file.replace(/\$private_ipv4/g, req.query.$private_ipv4)
+          }
+          res.status(200).send(file);
         } catch(err){
           res.status(400).send(err.message);
         }

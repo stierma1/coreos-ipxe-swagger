@@ -39,6 +39,20 @@
                             "required": false,
                             "type": "string",
                             "paramType": "query"
+                        },
+                        {
+                            "name": "$public_ipv4",
+                            "description": "public ip address of caller",
+                            "required": false,
+                            "type": "string",
+                            "paramType": "query"
+                        },
+                        {
+                            "name": "$private_ipv4",
+                            "description": "private ip address of caller",
+                            "required": false,
+                            "type": "string",
+                            "paramType": "query"
                         }
                     ]
                 },

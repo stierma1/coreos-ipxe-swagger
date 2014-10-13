@@ -74,12 +74,21 @@ var getScript = function(req, res){
     }
   }
 
+  var addrString = "?";
+
+  if(req.query.$public_ipv4){
+    addrString += '&$public_ipv4=' + req.query.$public_ipv4;
+  }
+  if(req.query.$private_addr){
+    addrString += '&$private_ipv4=' + req.query.$private_ipv4;
+  }
+
   var optString = "";
-  optString += profile.rootfstype ? ('  rootfstype=' + profile.rootfstype) : '';
+  optString += '  rootfstype=btrfs';
   for(var i in profile.console){
     optString += ' console=' + profile.console[i];
   }
-  optString += ' cloud-config-url=http://' + cloud_conf;
+  optString += ' cloud-config-url=http://' + cloud_conf + addrString;
   optString += profile.coreos_autologin ? (' coreos.autologin=' + this.coreos_autologin): '';
   optString += profile.sshkey ? (' sshkey="' + sshkey + '"') : '';
   optString += profile.root ? (' root=' + profile.root) : '';
