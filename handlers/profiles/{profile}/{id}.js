@@ -40,7 +40,7 @@ module.exports = {
 
 var putMac =
   function (req, res) {
-      var partialPath = 'profiles' + path.sep + req.params.profile + path.sep + (req.params.id ? req.params.id + '.json' : 'default.json');
+      var partialPath = 'profiles' + path.sep + req.params.profile + path.sep + (req.params.id ? req.params.id.replace(/:/g, '') + '.json' : 'default.json');
       try{
         try{
           resMan.validPartialPath('profiles' + path.sep + req.params.profile );
@@ -56,7 +56,7 @@ var putMac =
 
 var getScript = function(req, res){
   console.log("Get Request for " + req.params.profile + (req.params.id ? '/' + req.params.id : ''));
-  var partialPath = 'profiles' + path.sep + req.params.profile + path.sep + (req.params.id ? req.params.id + '.json' : 'default.json');
+  var partialPath = 'profiles' + path.sep + req.params.profile + path.sep + (req.params.id ? req.params.id.replace(/:/g, '') + '.json' : 'default.json');
 
   var profile = JSON.parse(resMan.read(partialPath));
 
